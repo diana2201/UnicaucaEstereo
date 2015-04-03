@@ -1,0 +1,90 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="UnicaucaEstereo2.Programacion"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <phone:Pivot>
+            <!--Inicio TITULO-->
+            <phone:Pivot.Title>
+                <StackPanel Orientation="Horizontal">
+                    <!--<TextBlock Text="104.1" FontSize="70" FontWeight="ExtraBold"/>-->
+                    <Image Source="/images/104.1.png"/>
+                    <Rectangle Height="100" Width="7" Fill="Red" Margin="5 0 0 0"/>
+                    <Rectangle Height="100" Width="7" Fill="DarkBlue"/>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="Unicauca" FontSize="70" FontWeight="Thin" TextAlignment="Center" Margin="0 -20"/>
+                        <TextBlock Text="Estéreo" FontSize="70"  FontWeight="Medium" TextAlignment="Center"  Margin="0 -20"/>
+                    </StackPanel>
+                </StackPanel>
+            </phone:Pivot.Title>
+            <!--Fin TITULO-->
+
+            <!--Inicio Fondo-->
+            <phone:Pivot.Background>
+                <ImageBrush ImageSource="/images/rojo_azul_700.jpg"/>
+            </phone:Pivot.Background>
+            <!--Fin Fondo-->
+            
+            <!--Inicio hoy-->
+            <phone:PivotItem Header="Hoy">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="330"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        
+                    </Grid.RowDefinitions>
+                    <Canvas Grid.Column="0">
+                        <Rectangle Height="500" Width="150" Canvas.Left="15" Canvas.Top="10" Fill="Azure" Opacity="0.6"/>
+                        <StackPanel Orientation="Vertical" Canvas.Left="50" Canvas.Top="40">
+                            <TextBlock Text="2-4 pm" Foreground="#C41010" FontSize="25" FontWeight="SemiBold" />
+                            <TextBlock Text="4-6 pm" Foreground="#C41010" FontSize="25" FontWeight="SemiBold" Margin="0 120 0 0"/>
+                            <TextBlock Text="6-8 pm" Foreground="#C41010" FontSize="25" FontWeight="SemiBold" Margin="0 100 0 0"/>
+                            <TextBlock Text="8-10 pm" Foreground="#C41010" FontSize="25" FontWeight="SemiBold" Margin="-5 60 0 0"/>
+                        </StackPanel>
+                    </Canvas>
+                    <Canvas Grid.Column="1">
+                        <Rectangle Height="500" Width="260" Canvas.Left="15" Canvas.Top="10" Fill="Azure" Opacity="0.6"/>
+                        <StackPanel Orientation="Vertical" Canvas.Left="30" Canvas.Top="15">
+                            <TextBlock Text="Me Gusta" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                            <TextBlock Text="Maria Alejandra Medina" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                            <TextBlock Margin="0 20 0 0" Text="Pasaporte Express Internacional" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                            <TextBlock Text="Jorge Gonzáles" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                            <TextBlock Margin="0 20 0 0" Text="Kirameki Ongaku" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                            <TextBlock Text="Victor Martínez" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                            <TextBlock Margin="0 20 0 0" Text="Factor RH" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                            <TextBlock Text="Jorge Betancourt" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                        </StackPanel>
+                    </Canvas>
+                </Grid>
+            </phone:PivotItem>
+            <!--Fin hoy-->
+
+            <!--Inicio mañana-->
+            <phone:PivotItem Header="Mañana">
+
+            </phone:PivotItem>
+            <!--Mañana Fin-->
+
+            <!--Inicio Semana-->
+            <phone:PivotItem Header="Semana">
+
+            </phone:PivotItem>
+            <!--Fin Semana-->
+        </phone:Pivot>
+    </Grid>
+
+</phone:PhoneApplicationPage>

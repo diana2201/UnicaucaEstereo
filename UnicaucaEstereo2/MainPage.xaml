@@ -1,0 +1,143 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="UnicaucaEstereo2.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <phone:Pivot>
+        <!--Inicio TITULO-->
+        <phone:Pivot.Title>
+            <StackPanel Orientation="Horizontal">
+                <!--<TextBlock Text="104.1" FontSize="70" FontWeight="ExtraBold"/>-->
+                <Image Source="/images/104.1.png"/>
+                <Rectangle Height="100" Width="7" Fill="Red" Margin="5 0 0 0"/>
+                <Rectangle Height="100" Width="7" Fill="DarkBlue"/>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Unicauca" FontSize="70" FontWeight="Thin" TextAlignment="Center" Margin="0 -20"/>
+                    <TextBlock Text="Estéreo" FontSize="70"  FontWeight="Medium" TextAlignment="Center"  Margin="0 -20"/>
+                </StackPanel>
+            </StackPanel>
+        </phone:Pivot.Title>
+        <!--Fin TITULO-->
+
+        <!--Inicio Fondo-->
+        <phone:Pivot.Background>
+            <ImageBrush ImageSource="/images/rojo_azul_700.jpg"/>
+        </phone:Pivot.Background>
+        <!--Fin Fondo-->
+        
+        <!--Inicio Pivot en vivo-->
+        <phone:PivotItem Header="En vivo">
+            <Grid x:Name="Vivo">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition  />
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Inicio Play-->
+                <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" >
+                    <Button Height="170" Width="180" BorderBrush="Transparent" Margin="130 20 0 0" Click="EmisoraPlay" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/images/play3.png"/>
+                        </Button.Background>
+                    </Button>
+                    <MediaElement x:Name="Envivo" Source="http://emisora.unicauca.edu.co:8000/stream" AutoPlay="False"/>
+                    <Button Height="80" Width="80" BorderBrush="Transparent" Margin="-30 100 0 0" Click="EmisoraPause" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/images/pause4.png" Opacity="0.8" />
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <!--Fin Play-->
+                
+                <!--Inicio programa actual-->
+                <Canvas Grid.Row="1" Grid.ColumnSpan="2" Margin="0 10 0 0">
+                    <Rectangle Canvas.Left="30" Fill="Gray" Width="400" Height="100" Opacity="0.3" Canvas.ZIndex="0"/>
+                    <StackPanel Orientation="Vertical" Canvas.Left="45" Canvas.ZIndex="1" Margin="0 1 0 0">
+                        <TextBlock Text="Estás escuchando: " FontSize="24" FontWeight="Normal"/>
+                        <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
+                            <TextBlock VerticalAlignment="Center"  Foreground="#F22E07"  Text="4-6 pm: " FontSize="24" FontWeight="Bold"/>
+                            <TextBlock FontWeight="SemiBold" Foreground="#7D99F0" Text="Pasaporte Express Internacional " FontSize="24" Width="270" TextWrapping="Wrap" />
+                        </StackPanel>                        
+                        <TextBlock Text="Programación completa" FontWeight="Light" FontSize="23" TextDecorations="Underline" TextAlignment="Right"  Foreground="#F5C1C1" Tap="irProgramacion" />
+                    </StackPanel>                    
+                </Canvas>
+                <!--Fin programa actual-->
+                
+                <!--Inicio iconos contacto-->
+                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Margin="35 20 0 -40">                 
+
+                    <Image Opacity="0.7" Source="/images/fb1.png" Grid.Column="0" Grid.Row="0" Height="70" HorizontalAlignment="Right" Margin="0 10 5 10"/>
+                    <Image Opacity="0.7"  Source="/images/tw1.png" Grid.Column="0" Grid.Row="1" Height="70" HorizontalAlignment="Right" Margin="10 0 5 0"/>
+                    <!--<Image Source="/images/web.png" Grid.Column="1" Grid.Row="1" Height="70" HorizontalAlignment="Right" Margin="0 0 5 0"/>-->
+
+                </StackPanel>
+                <!--Fin iconos contacto-->
+
+                <!--Inicio chat-->
+                <StackPanel Grid.Column="1" Grid.Row="3" Margin="0 0 40 20">
+                    <Button Height="150" Width="160" BorderBrush="Transparent" Margin="20 0 0 0" Click="irChat">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/images/chat3.png" Opacity="0.6"/>
+                        </Button.Background>
+                    </Button>
+                    <TextBlock Text="Pide tu canción" Margin="28 -20 0 0" FontSize="25" FontWeight="Light"/>
+                </StackPanel>
+                <!--FIn chat-->
+            </Grid>
+
+        </phone:PivotItem>
+        <!--Fin Pivot en vivo-->
+        
+        <!--Inicio Pivot Musica-->
+        <phone:PivotItem Header="Música">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--Barra de buscar-->
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <TextBox x:Name="busqueda" Width="350" Height="67"/>
+                    <Button Height="90" Width="90"  Margin="-10 0 10 0"   BorderBrush="White">
+                        <Image Source="/images/feature.search.png" Margin="-5 0 0 0" Height="50" Width="50"/>
+                    </Button>
+
+                </StackPanel>
+                <!--Lista de canciones-->
+                <ListBox x:Name="listaCanciones" ItemsSource="{Binding Source={StaticResource canciones}, Path=Data}" CacheMode="BitmapCache" Grid.Row="1" Margin="0,3,-21,0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                           <StackPanel Orientation="Horizontal" >
+                                <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="0 10 0 0"/>
+                                <StackPanel Margin="10 9 0 0">
+                                <TextBlock FontSize="25" Text="{Binding Nombre}"  FontWeight="Bold" Tap="IrReproductor"/>
+                                <TextBlock FontSize="17" Text="{Binding Autor}"/>
+                             </StackPanel>
+                           </StackPanel>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </phone:PivotItem>
+        <!--Fin Pivot Musica-->
+
+    </phone:Pivot>
+
+</phone:PhoneApplicationPage>
