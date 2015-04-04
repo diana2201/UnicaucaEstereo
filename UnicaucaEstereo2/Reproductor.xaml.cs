@@ -36,19 +36,31 @@ namespace UnicaucaEstereo2
 
             ApplicationBarIconButton Play = new ApplicationBarIconButton(new Uri("/Images/transport.play.png", UriKind.Relative));
             Play.Text = "Play";
+            Play.Click += Play_Click;
             ApplicationBar.Buttons.Add(Play);
+            
 
             ApplicationBarIconButton Pause = new ApplicationBarIconButton(new Uri("/Images/transport.pause.png", UriKind.Relative));
             Pause.Text = "Pause";
+            Pause.Click += Pause_Click;
             ApplicationBar.Buttons.Add(Pause);
+            
+           
 
             ApplicationBarIconButton Siguiente = new ApplicationBarIconButton(new Uri("/Images/transport.ff.png", UriKind.Relative));
             Siguiente.Text = "Siguiente";
             ApplicationBar.Buttons.Add(Siguiente);
 
-            //    // Create a new menu item with the localized string from AppResources.
-            // ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-            //ApplicationBar.MenuItems.Add(appBarMenuItem);
         }
+
+        void Pause_Click(object sender, EventArgs e)
+        {
+            reproductor.Pause();
+        }
+
+            void Play_Click(object sender, EventArgs e)
+            {
+                reproductor.Play();
+            }
     }
 }

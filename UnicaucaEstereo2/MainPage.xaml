@@ -106,7 +106,7 @@
         
         <!--Inicio Pivot Musica-->
         <phone:PivotItem Header="Música">
-            <Grid>
+            <Grid DataContext="{Binding Source={StaticResource dataModel}}" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
@@ -115,25 +115,23 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <TextBox x:Name="busqueda" Width="350" Height="67"/>
                     <Button Height="90" Width="90"  Margin="-10 0 10 0"   BorderBrush="White">
-                        <Image Source="/images/feature.search.png" Margin="-5 0 0 0" Height="50" Width="50"/>
+                        <Image Source="/images/feature.search.png" Margin="-5 0 0 0" Height="50" Width="50" Tap="btnBuscar"/>
                     </Button>
-
                 </StackPanel>
-                <!--Lista de canciones-->
-                <ListBox x:Name="listaCanciones" ItemsSource="{Binding Source={StaticResource canciones}, Path=Data}" CacheMode="BitmapCache" Grid.Row="1" Margin="0,3,-21,0">
-                    <ListBox.ItemTemplate>
+                
+                <!--Lista de canciones-->    
+                <phone:LongListSelector x:Name="listaCanciones" ItemsSource="{Binding Data}" Grid.Row="1">
+                    <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>
-                           <StackPanel Orientation="Horizontal" >
+                            <StackPanel Orientation="Horizontal">
                                 <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="0 10 0 0"/>
                                 <StackPanel Margin="10 9 0 0">
-                                <TextBlock FontSize="25" Text="{Binding Nombre}"  FontWeight="Bold" Tap="IrReproductor"/>
-                                <TextBlock FontSize="17" Text="{Binding Autor}"/>
-                             </StackPanel>
-                           </StackPanel>
-
+                                    <TextBlock Text="{Binding title}" FontSize="25" FontWeight="SemiBold" TextWrapping="Wrap" Tap="IrReproductor" Width="420"/>
+                                </StackPanel>
+                            </StackPanel>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
             </Grid>
         </phone:PivotItem>
         <!--Fin Pivot Musica-->

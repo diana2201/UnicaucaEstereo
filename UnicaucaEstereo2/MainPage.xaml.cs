@@ -9,15 +9,19 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using UnicaucaEstereo2.Resources;
 using UnicaucaEstereo2.Models;
+using UnicaucaEstereo2.Net;
 
 namespace UnicaucaEstereo2
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage : PhoneApplicationPage, Conexion<Musica>.Iconexion
     {
+        Conexion<Musica> conexion;
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            conexion = new Conexion<Musica>();
+            conexion.findAllDocuments(this);
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -36,9 +40,10 @@ namespace UnicaucaEstereo2
 
             if (reproductor != null)
             {
-                Cancion cancionSelected = new Cancion();
-                cancionSelected = listaCanciones.SelectedItem as Cancion;
-                reproductor.DataContext = cancionSelected;
+                Musica musicaSelected = new Musica();
+                musicaSelected = listaCanciones.SelectedItem as Musica;
+                reproductor.DataContext = musicaSelected;
+                
 
             }
         }
@@ -61,6 +66,24 @@ namespace UnicaucaEstereo2
         private void EmisoraPause(object sender, RoutedEventArgs e)
         {
             Envivo.Pause();
+        }
+
+        public void loadDocuments(List<Musica> documents)
+        {
+            DataModel dataM = Application.Current.Resources["dataModel"] as DataModel;
+
+            for (int i = 0; i < documents.Count; i++)
+            {
+                dataM.Data.Add(documents.ElementAt(i));
+            }
+        }
+
+        private void btnBuscar(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            DataModel datam = new DataModel();
+            var canciones = datam.data;
+                         
+ 
         }
         
 

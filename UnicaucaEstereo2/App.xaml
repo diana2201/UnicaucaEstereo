@@ -4,13 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Models="clr-namespace:UnicaucaEstereo2.Models"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    >
 
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:UnicaucaEstereo2" x:Key="LocalizedStrings"/>
-        <Models:Canciones x:Key="canciones"/>
-        <Models:Cancion x:Key="cancion"/>
+        <Models:DataModel x:Key="dataModel"/>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
