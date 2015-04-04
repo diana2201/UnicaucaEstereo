@@ -114,7 +114,7 @@
                 <!--Barra de buscar-->
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <TextBox x:Name="busqueda" Width="350" Height="67"/>
-                    <Button Height="90" Width="90"  Margin="-10 0 10 0"   BorderBrush="White">
+                    <Button Height="90" Width="90"  Margin="-10 0 10 0"   BorderBrush="White" >
                         <Image Source="/images/feature.search.png" Margin="-5 0 0 0" Height="50" Width="50" Tap="btnBuscar"/>
                     </Button>
                 </StackPanel>
@@ -126,7 +126,8 @@
                             <StackPanel Orientation="Horizontal">
                                 <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="0 10 0 0"/>
                                 <StackPanel Margin="10 9 0 0">
-                                    <TextBlock Text="{Binding title}" FontSize="25" FontWeight="SemiBold" TextWrapping="Wrap" Tap="IrReproductor" Width="420"/>
+                                    <TextBlock Text="{Binding title}" FontSize="25" FontWeight="SemiBold" Tap="IrReproductor" Width="420"/>
+                                    <TextBlock Text="{Binding artist}" Width="420"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>

@@ -10,12 +10,15 @@ using Microsoft.Phone.Shell;
 using UnicaucaEstereo2.Resources;
 using UnicaucaEstereo2.Models;
 using UnicaucaEstereo2.Net;
+using System.Collections.ObjectModel;
 
 namespace UnicaucaEstereo2
 {
     public partial class MainPage : PhoneApplicationPage, Conexion<Musica>.Iconexion
     {
+        DataModel dataM;
         Conexion<Musica> conexion;
+        resultadosBusqueda RB = new resultadosBusqueda();
         // Constructor
         public MainPage()
         {
@@ -70,7 +73,7 @@ namespace UnicaucaEstereo2
 
         public void loadDocuments(List<Musica> documents)
         {
-            DataModel dataM = Application.Current.Resources["dataModel"] as DataModel;
+           dataM = Application.Current.Resources["dataModel"] as DataModel;
 
             for (int i = 0; i < documents.Count; i++)
             {
@@ -80,10 +83,42 @@ namespace UnicaucaEstereo2
 
         private void btnBuscar(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            DataModel datam = new DataModel();
-            var canciones = datam.data;
-                         
- 
+            int j = 0;
+            DataModelResult dataRes = Application.Current.Resources["dataModelResult"] as DataModelResult;
+            try
+            {
+                 for (int i = 0; i < dataM.Data.Count(); i++)
+                //for (int i = 0; i < 5; i++)
+                 {
+                    String title = dataM.Data.ElementAt(i).title;
+                    
+                    if (title != null)
+                    {
+                        if (title.StartsWith(busqueda.Text) || title.EndsWith(busqueda.Text))
+                        {
+                            j = 1;
+                            dataRes.DataR.Add(dataM.Data.ElementAt(i));
+                        }
+                    }
+                   
+                }
+               
+                if(j == 0)
+                {
+                    MessageBox.Show("No se encontro:" + busqueda.Text);
+                }
+                else
+                {                  
+                    //MessageBox.Show("contexto de resultadosbusqueda = datares ");
+                    NavigationService.Navigate(new Uri("/resultadosBusqueda.xaml", UriKind.Relative));
+                }
+                
+                
+            }
+            catch(Exception exp)
+            {
+                MessageBox.Show("Error: " + exp.GetBaseException());
+            }
         }
         
 

@@ -56,6 +56,7 @@ namespace UnicaucaEstereo2
         void Pause_Click(object sender, EventArgs e)
         {
             reproductor.Pause();
+            
         }
 
             void Play_Click(object sender, EventArgs e)

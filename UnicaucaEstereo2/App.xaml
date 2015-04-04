@@ -11,6 +11,8 @@
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:UnicaucaEstereo2" x:Key="LocalizedStrings"/>
         <Models:DataModel x:Key="dataModel"/>
+        <Models:DataModelResult x:Key="dataModelResult"/>
+        
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
