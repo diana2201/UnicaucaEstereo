@@ -11,6 +11,7 @@ using UnicaucaEstereo2.Resources;
 using UnicaucaEstereo2.Models;
 using UnicaucaEstereo2.Net;
 using System.Collections.ObjectModel;
+using Microsoft.Phone.Tasks;
 
 namespace UnicaucaEstereo2
 {
@@ -85,16 +86,23 @@ namespace UnicaucaEstereo2
         {
             int j = 0;
             DataModelResult dataRes = Application.Current.Resources["dataModelResult"] as DataModelResult;
+            dataRes.DataR.Clear();
             try
             {
                  for (int i = 0; i < dataM.Data.Count(); i++)
                 //for (int i = 0; i < 5; i++)
                  {
                     String title = dataM.Data.ElementAt(i).title;
-                    
+                    String artist = dataM.Data.ElementAt(i).artist;
+                                         
                     if (title != null)
                     {
-                        if (title.StartsWith(busqueda.Text) || title.EndsWith(busqueda.Text))
+                        if (title.ToUpper().Contains(busqueda.Text.ToUpper()))
+                        {
+                            j = 1;
+                            dataRes.DataR.Add(dataM.Data.ElementAt(i));
+                        }
+                        if (artist.ToUpper().Contains(busqueda.Text.ToUpper()))
                         {
                             j = 1;
                             dataRes.DataR.Add(dataM.Data.ElementAt(i));
@@ -105,7 +113,7 @@ namespace UnicaucaEstereo2
                
                 if(j == 0)
                 {
-                    MessageBox.Show("No se encontro:" + busqueda.Text);
+                    MessageBox.Show("No se encontró: " + busqueda.Text);
                 }
                 else
                 {                  
@@ -119,6 +127,23 @@ namespace UnicaucaEstereo2
             {
                 MessageBox.Show("Error: " + exp.GetBaseException());
             }
+            busqueda.Text = "";
+        }
+
+        private void Facebook(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var page = new WebBrowserTask();
+            Uri direccion = new Uri("https://www.facebook.com/pages/Unicauca-Estereo/245571882310420", UriKind.Absolute);
+            page.Uri = direccion;
+            page.Show();
+        }
+
+        private void Twitter(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var page = new WebBrowserTask();
+            Uri direccion = new Uri("https://twitter.com/unicaucaestereo", UriKind.Absolute);
+            page.Uri = direccion;
+            page.Show();
         }
         
 
