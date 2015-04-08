@@ -45,7 +45,8 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="1" Orientation="Vertical" Margin="0 0 0 110">
-                <MediaElement x:Name="reproductor" Source="{Binding Uri}" MediaEnded="reproductor_MediaEnded"  AutoPlay="true" />
+                
+                <MediaElement x:Name="reproductor" Source="{Binding Uri}" MediaEnded="reproductor_MediaEnded"  AutoPlay="true"/>
                 <TextBlock x:Name="nombre" Width="440" TextWrapping="Wrap" FontSize="35" HorizontalAlignment="Center" FontWeight="Medium" Text="{Binding title, Mode=OneWay}"/>
                 <TextBlock x:Name="artist" Text="{Binding artist}" Width="440" TextWrapping="Wrap" HorizontalAlignment="Center"/>
             </StackPanel>
