@@ -24,10 +24,12 @@
       <Extensions>
         <Extension Category="windows.backgroundTasks" EntryPoint="AgHost.BackgroundTask">
           <BackgroundTasks>
+
             <Task Type="systemEvent" />
           </BackgroundTasks>
         </Extension>
-      </Extensions>
+      </Extensions> 
+
     </Application>
   </Applications>
   <Extensions>
