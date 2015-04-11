@@ -12,21 +12,34 @@ using UnicaucaEstereo2.Models;
 using UnicaucaEstereo2.Net;
 using System.Collections.ObjectModel;
 using Microsoft.Phone.Tasks;
+using Microsoft.Phone.Net.NetworkInformation;
+using System.Threading;
 
 namespace UnicaucaEstereo2
 {
     public partial class MainPage : PhoneApplicationPage, Conexion<Musica>.Iconexion
     {
+
+        
+
         DataModel dataM;
         Conexion<Musica> conexion;
         resultadosBusqueda RB = new resultadosBusqueda();
         // Constructor
+
+
         public MainPage()
         {
             InitializeComponent();
-            conexion = new Conexion<Musica>();
-            conexion.findAllDocuments(this);
-
+           // if (NetworkInterface.GetIsNetworkAvailable())
+            //{
+                conexion = new Conexion<Musica>();
+                conexion.findAllDocuments(this);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Revisa tu conexión a internet");
+            //}
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
@@ -64,7 +77,16 @@ namespace UnicaucaEstereo2
 
         private void EmisoraPlay(object sender, RoutedEventArgs e)
         {
-            Envivo.Play();
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                //Envivo.Play();
+
+            }
+            else
+            {
+                MessageBox.Show("Revisa tu conexión a internet");
+            }
+            
         }
 
         private void EmisoraPause(object sender, RoutedEventArgs e)
@@ -162,5 +184,7 @@ namespace UnicaucaEstereo2
         //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
         //    ApplicationBar.MenuItems.Add(appBarMenuItem);
         //}
+
+        public bool CheckInternetConnection { get; set; }
     }
 }

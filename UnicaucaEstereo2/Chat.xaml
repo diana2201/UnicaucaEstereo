@@ -38,32 +38,62 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            
-            <TextBlock Text="Chat" FontSize="70" FontWeight="Light"/>
-            <Canvas Grid.Row="1" Grid.ColumnSpan="2" Margin="-30 20 0 0">
-                <Rectangle Canvas.Left="40" Fill="#B7B9C9" Width="430" Height="430" Opacity="0.75" Canvas.ZIndex="0"/>
-                <StackPanel Orientation="Vertical" Canvas.Left="50" Canvas.ZIndex="1" Margin="0 1 0 0">
-                    <TextBlock Text="Usuario: " FontSize="29" FontWeight="SemiBold" Foreground="#D60909"/>
-                    <TextBlock FontSize="25" Text="Buenas tardes, para solicitar la novena sinfonía de Beethoven" TextWrapping="Wrap" Width="380" Foreground="#24318C"/>
-                    
-                </StackPanel>
+
+            <Grid.Resources >
+                <DataTemplate x:Key="tweetlist" >
+
+                    <!--<Canvas>
+                        <Rectangle Width="440" Height="170" Opacity="0.45" Fill="Bisque"/>-->
+                        <StackPanel Orientation="Horizontal"
+                                           Margin="10,10,0,10">
+                            <Ellipse Height="60" Width="60">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding User.ProfileImageUrl}"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel Orientation="Vertical" Margin="10 0 0 0">
+                                <TextBlock Text="{Binding User.ScreenName}"  FontSize="23" TextWrapping="Wrap"
+                                             VerticalAlignment="Top" Foreground="#00006B" FontWeight="Bold"/>
+
+
+                                <TextBlock Text="{Binding Text}" Width="340" TextWrapping="Wrap" FontSize="20" Foreground="#860000"
+                                            VerticalAlignment="Top" FontWeight="SemiBold" />
+                            </StackPanel>
+                            <!-- </Grid> -->
+                        </StackPanel>
+                    <!--</Canvas>-->
+                </DataTemplate>
+            </Grid.Resources>
+
+            <TextBlock Text="Pide tu Canción" FontSize="57" FontWeight="Light"/>
+
+            <Canvas Grid.Row="1">
+                <Rectangle Width="440" Height="470" Opacity="0.45" Fill="Bisque"/>
+                <phone:LongListSelector   Grid.Row="1"                          
+                            Margin="10,0,0,0"
+                            ItemTemplate="{StaticResource tweetlist}"
+                            x:Name="tweetList"
+                            Width="430" >
+                </phone:LongListSelector>
             </Canvas>
+            
+
+
 
             <StackPanel Grid.Row="2" Orientation="Horizontal">
-                <TextBox  x:Name="chat" Width="390" HorizontalAlignment="Left"/>
-                <Button Width="80" Height="75" Margin="-10 0 0 0" BorderBrush="Transparent" >
+                <TextBox  x:Name="chat" Width="390" HorizontalAlignment="Left" MaxLength="108" InputScope="Text"/>
+                <Button Width="80" Height="75" Margin="-10 0 0 0" BorderBrush="Transparent" Click="EnviarTweet">
                     <Button.Background>
                         <ImageBrush ImageSource="/Images/send5.png" Opacity="0.7"/>
                     </Button.Background>
                 </Button>
             </StackPanel>
-            
+
 
         </Grid>
     </Grid>

@@ -137,6 +137,66 @@
         </phone:PivotItem>
         <!--Fin Pivot Musica-->
 
+        <!--Inicio Pivot Emisora-->
+        <phone:PivotItem Header="La Emisora">
+            <ScrollViewer VerticalScrollBarVisibility="Visible">
+                <StackPanel Orientation="Vertical" Margin="-20">
+
+                    <Canvas>
+                        <Rectangle Fill="Bisque" Height="270" Width="455" Margin="15 -5 3 -3" Opacity="0.5"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 20 0 0"/>
+                            <TextBlock Text="¿Qué somos?" FontSize="30" Margin="10 20 0 0" FontWeight="Bold" Foreground="#000099"/>
+                        </StackPanel>
+
+                        <RichTextBox TextAlignment="Justify" Margin="10 70 5 0" Width="470" Foreground="#5A0000">
+                            <Paragraph>
+                                Un medio de comunicación Institucional, adscrito a la Vicerrectoría de Cultura y 
+                                Bienestar de la Universidad del Cauca, de carácter universitario, orientamos la programación 
+                                a elevar el nivel educativo y cultural; de la misma 
+                                manera, promover y difundir los valores humanos, la formación ciudadana y el debate público.
+                            </Paragraph>
+                        </RichTextBox>
+                    </Canvas>
+
+                    <Canvas Margin="0 280 0 0">
+                        <Rectangle Fill="Bisque" Height="270" Width="455" Margin="15 -5 3 -3" Opacity="0.5"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 10 0 0"/>
+                            <TextBlock Text="Nuestra Programación" FontSize="30" Margin="10 10 0 0" FontWeight="Bold" Foreground="#000099"/>
+                        </StackPanel>
+
+                        <RichTextBox TextAlignment="Justify" Margin="10 70 5 0" Width="470" Foreground="#5A0000">
+                            <Paragraph>
+                                Incluye espacios con contenidos de interés para 
+                            adultos, jóvenes, familia, universitarios, población infantil y la comunidad en general; que sumado a 
+                            los espacios musicales pertenecientes a diferentes géneros,  permiten  consolidar una programación 
+                            universitaria, de interés público y enfocada a la diversidad de la región y el país.
+                            </Paragraph>
+                        </RichTextBox>
+                    </Canvas>
+
+                    <Canvas Margin="0 280 0 0">
+                        <Rectangle Fill="Gray" Height="250" Width="455" Margin="15 -3 3 -3" Opacity="0.55"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 10 0 0"/>
+                            <TextBlock Text="Nuestro Propósito" FontSize="30" Margin="10 10 0 0" FontWeight="Bold" Foreground="#000099"/>
+                        </StackPanel>
+
+                        <RichTextBox TextAlignment="Justify" Margin="5 70 5 0" Width="470" Foreground="#5A0000">
+                            <Paragraph>
+                                Articularnos a la región norte del departamento del Cauca, con una programación 
+                            que refleje el sentido universitario, la diversidad musical de la región y del país, 
+                            al tiempo que nos permita entretejer saberes y encuentros con las culturas diversas
+                            de los habitantes del norte del Cauca,
+                            </Paragraph>
+                        </RichTextBox>
+                    </Canvas>
+                </StackPanel>
+            </ScrollViewer>
+        </phone:PivotItem>
+        <!--Fin Pivot Emisora-->
+
     </phone:Pivot>
 
 </phone:PhoneApplicationPage>
