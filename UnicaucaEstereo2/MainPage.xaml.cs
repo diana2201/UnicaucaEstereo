@@ -19,22 +19,25 @@ namespace UnicaucaEstereo2
 {
     public partial class MainPage : PhoneApplicationPage, Conexion<Musica>.Iconexion
     {
-
-        
-
         DataModel dataM;
         Conexion<Musica> conexion;
         resultadosBusqueda RB = new resultadosBusqueda();
+        ProgramacionDAO programacionDAO;
         // Constructor
-
-
         public MainPage()
         {
             InitializeComponent();
+            programacionDAO = new ProgramacionDAO();
+            cargarProgramacionDia();
            // if (NetworkInterface.GetIsNetworkAvailable())
             //{
                 conexion = new Conexion<Musica>();
                 conexion.findAllDocuments(this);
+
+                List<Programa> lisIni = programacionDAO.findAllProgramas();
+                if(lisIni.Count == 0){            
+                programacionDAO.insertAllProgramas();
+                }
             //}
             //else
             //{
@@ -79,7 +82,7 @@ namespace UnicaucaEstereo2
         {
             if (NetworkInterface.GetIsNetworkAvailable())
             {
-                //Envivo.Play();
+                Envivo.Play();
 
             }
             else
@@ -167,24 +170,32 @@ namespace UnicaucaEstereo2
             page.Uri = direccion;
             page.Show();
         }
-        
 
-        // Sample code for building a localized ApplicationBar
-        //private void BuildLocalizedApplicationBar()
-        //{
-        //    // Set the page's ApplicationBar to a new instance of ApplicationBar.
-        //    ApplicationBar = new ApplicationBar();
+        private void cargarProgramacionDia()
+        {
+            DateTime hoy = DateTime.Now;
+            String dia = hoy.DayOfWeek.ToString();
+            programacionDAO.findActualDay(dia);            
+        }
 
-        //    // Create a new button and set the text value to the localized string from AppResources.
-        //    ApplicationBarIconButton appBarButton = new ApplicationBarIconButton(new Uri("/Assets/AppBar/appbar.add.rest.png", UriKind.Relative));
-        //    appBarButton.Text = AppResources.AppBarButtonText;
-        //    ApplicationBar.Buttons.Add(appBarButton);
-
-        //    // Create a new menu item with the localized string from AppResources.
-        //    ApplicationBarMenuItem appBarMenuItem = new ApplicationBarMenuItem(AppResources.AppBarMenuItemText);
-        //    ApplicationBar.MenuItems.Add(appBarMenuItem);
-        //}
+      
 
         public bool CheckInternetConnection { get; set; }
+
+        //private void traerResultado(object sender, RoutedEventArgs e)
+        //{
+
+        //    List<Programa> listapro = programacionDAO.findAllProgramas();
+        //    hoy.Text = listapro.Last<Programa>().name;
+        //    hoy2.Text = "" + listapro.Count();
+        //}
+
+        //private void insertarProg(object sender, RoutedEventArgs e)
+        //{
+        //    programacionDAO.insertAllProgramas();
+        //}
+
+
+
     }
 }

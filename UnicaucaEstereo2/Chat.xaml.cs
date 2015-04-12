@@ -21,14 +21,14 @@ namespace UnicaucaEstereo2
             TraerPorHashtag();
         }
 
-        private TwitterService CrearServicio()
+        public TwitterService CrearServicio()
         {
             var service = new TwitterService("vyC1jcdmwiITzLGXFHDwsH7Bt", "L6sarTFzb9QTCzOs1j1NjSdeD2yTZnFrsOzhuN6PN6cEZ3o6KU");
             service.AuthenticateWith("435393700-3XfGClwmkI95SauKX88exrN4aPz5u9hxnIdjK69Z", "UtcU4OATLuZqWJ9wOwIhwm4FEnSyKX7EPwAn3rE1gvpyV");
             return service;
         }
 
-        private void EnviarTweet(object sender, RoutedEventArgs e)
+        public void EnviarTweet(object sender, RoutedEventArgs e)
         {
             if (NetworkInterface.GetIsNetworkAvailable())
             {
@@ -57,9 +57,10 @@ namespace UnicaucaEstereo2
             {
                 MessageBox.Show("Debes estar conectado a internet para pedir una canción");
             }
+            
         }
 
-        private void TraerPorHashtag()
+        public void TraerPorHashtag()
         {
             var service = CrearServicio();
             service.Search(new SearchOptions { Q = "#PideTuCancionEnUnicaucaEstereo" }, (ts, rep) =>

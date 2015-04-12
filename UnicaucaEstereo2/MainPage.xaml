@@ -137,6 +137,43 @@
         </phone:PivotItem>
         <!--Fin Pivot Musica-->
 
+        <!--Inicio Pivot Hoy-->
+        <phone:PivotItem Header="Hoy">
+            <!--<Canvas>
+                <Rectangle Fill="Bisque" Height="500" Width="430" Margin="15 -5 3 -3" Opacity="0.5" Canvas.ZIndex="0"/>-->
+                <Grid DataContext="{Binding Source={StaticResource prActual}}" Canvas.ZIndex="1">                    
+                    <!--<TextBlock x:Name="hoy" FontSize="60" FontWeight="Bold" Foreground="Violet"></TextBlock>
+                    <TextBlock x:Name="hoy2" FontSize="60" FontWeight="Bold" Foreground="Violet"></TextBlock>
+                    <Button Content="Insertar" Click="insertarProg" />
+                    <Button Content="Consultar" Click="traerResultado"/>-->
+                
+                    <phone:LongListSelector x:Name="programacionHoy" ItemsSource="{Binding DataActual}" >
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                        <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                        <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                     
+                                        <StackPanel Margin="10 9 0 0">
+                                                <TextBlock Text="{Binding name}" Foreground="White" FontSize="25" FontWeight="SemiBold" Tap="IrReproductor"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Director: " Foreground="White"/>
+                                                    <TextBlock Text="{Binding director}" Foreground="White" />
+                                                </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                               
+                        </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+                
+            </Grid>
+            <!--</Canvas>-->
+        </phone:PivotItem>
+        <!--Fin Pivot Hoy-->
+
         <!--Inicio Pivot Emisora-->
         <phone:PivotItem Header="La Emisora">
             <ScrollViewer VerticalScrollBarVisibility="Visible">
@@ -196,6 +233,7 @@
             </ScrollViewer>
         </phone:PivotItem>
         <!--Fin Pivot Emisora-->
+               
 
     </phone:Pivot>
 
