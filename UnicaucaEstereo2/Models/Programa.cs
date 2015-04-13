@@ -12,8 +12,10 @@ namespace UnicaucaEstereo2.Models
         [AutoIncrement, PrimaryKey]
         public int ID {get ; set;}
         public String name { get; set; }
-        public String startTime { get; set; }
-        public String endTime { get; set; }
+        public int startTime { get; set; }
+        public int startMin { get; set; }
+        public int endTime { get; set; }
+        public int endMin { get; set; }
         public String description { get; set; }
         public String announcer { get; set; }
         public String director { get; set; }

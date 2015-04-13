@@ -17,8 +17,15 @@ namespace UnicaucaEstereo2
     {
         public Chat()
         {
+            try
+            {
             InitializeComponent();
             TraerPorHashtag();
+            }
+            catch
+            {
+                MessageBox.Show("Comprueba tu conexión a internet");
+            }
         }
 
         public TwitterService CrearServicio()
@@ -30,8 +37,7 @@ namespace UnicaucaEstereo2
 
         public void EnviarTweet(object sender, RoutedEventArgs e)
         {
-            if (NetworkInterface.GetIsNetworkAvailable())
-            {
+            try{
                 var service = CrearServicio();
                 service.SendTweet(new SendTweetOptions { Status = "#PideTuCancionEnUnicaucaEstereo " + chat.Text }, (tweet, response) =>
                 {
@@ -45,15 +51,15 @@ namespace UnicaucaEstereo2
                         );
 
                     }
-                    else
-                    {
-                        MessageBox.Show("Tweet no enviado" + response.StatusCode.ToString());
-                        chat.Text = "";
-                    }
+                    //else
+                    //{
+                    //    MessageBox.Show("Debes estar conectado a internet para pedir una canción");
+                    //    chat.Text = "";
+                    //}
                 });
 
-            }
-            else
+            }        
+        catch(Exception exp)
             {
                 MessageBox.Show("Debes estar conectado a internet para pedir una canción");
             }

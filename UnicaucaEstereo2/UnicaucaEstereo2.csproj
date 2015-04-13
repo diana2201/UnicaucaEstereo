@@ -106,6 +106,7 @@
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\DataModelDiaActual.cs" />
     <Compile Include="Models\DataModelResult.cs" />
+    <Compile Include="Models\DataModelSemana.cs" />
     <Compile Include="Models\Musica.cs" />
     <Compile Include="Models\Programa.cs" />
     <Compile Include="Models\ProgramacionDAO.cs" />

@@ -71,11 +71,11 @@
                     <StackPanel Orientation="Vertical" Canvas.Left="45" Canvas.ZIndex="1" Margin="0 1 0 0">
                         <TextBlock Text="Estás escuchando: " FontSize="24" FontWeight="Normal"/>
                         <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
-                            <TextBlock VerticalAlignment="Center"  Foreground="#F22E07"  Text="4-6 pm: " FontSize="24" FontWeight="Bold"/>
-                            <TextBlock FontWeight="SemiBold" Foreground="#7D99F0" Text="Pasaporte Express Internacional " FontSize="24" Width="270" TextWrapping="Wrap" />
-                        </StackPanel>                        
-                        <TextBlock Text="Programación completa" FontWeight="Light" FontSize="23" TextDecorations="Underline" TextAlignment="Right"  Foreground="#F5C1C1" Tap="irProgramacion" />
-                    </StackPanel>                    
+                            <TextBlock x:Name="horaPrActual" VerticalAlignment="Center"  Foreground="#F22E07"  Text="4-6 pm: " FontSize="24" FontWeight="Bold"/>
+                            <TextBlock x:Name="nombrePrActual" FontWeight="SemiBold" Foreground="#7D99F0" Text="Pasaporte Express Internacional " FontSize="24" Width="270" TextWrapping="Wrap" />
+                        </StackPanel>              
+                    </StackPanel>
+                    <TextBlock Canvas.Top="100" Canvas.Left="190" Text="Programación completa" FontWeight="Light" FontSize="23" TextDecorations="Underline" TextAlignment="Right"  Foreground="#F5C1C1" Tap="irProgramacion" />
                 </Canvas>
                 <!--Fin programa actual-->
                 
@@ -139,38 +139,39 @@
 
         <!--Inicio Pivot Hoy-->
         <phone:PivotItem Header="Hoy">
-            <!--<Canvas>
-                <Rectangle Fill="Bisque" Height="500" Width="430" Margin="15 -5 3 -3" Opacity="0.5" Canvas.ZIndex="0"/>-->
-                <Grid DataContext="{Binding Source={StaticResource prActual}}" Canvas.ZIndex="1">                    
-                    <!--<TextBlock x:Name="hoy" FontSize="60" FontWeight="Bold" Foreground="Violet"></TextBlock>
-                    <TextBlock x:Name="hoy2" FontSize="60" FontWeight="Bold" Foreground="Violet"></TextBlock>
-                    <Button Content="Insertar" Click="insertarProg" />
-                    <Button Content="Consultar" Click="traerResultado"/>-->
-                
-                    <phone:LongListSelector x:Name="programacionHoy" ItemsSource="{Binding DataActual}" >
-                        <phone:LongListSelector.ItemTemplate>
-                            <DataTemplate>
-                                
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
-                                        <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
-                                        <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
-                                     
-                                        <StackPanel Margin="10 9 0 0">
-                                                <TextBlock Text="{Binding name}" Foreground="White" FontSize="25" FontWeight="SemiBold" Tap="IrReproductor"/>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="Director: " Foreground="White"/>
-                                                    <TextBlock Text="{Binding director}" Foreground="White" />
-                                                </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
-                               
+            <Grid Height="500" DataContext="{Binding Source={StaticResource prActual}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="330"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+
+                </Grid.RowDefinitions>
+                <!--<Canvas Grid.Column="0">-->
+                <Rectangle Height="500" Width="170"  Fill="Azure" Opacity="0.6"/>
+                <Rectangle Height="500" Width="290" Fill="Azure" Opacity="0.6" Grid.Column="1"/>
+                <phone:LongListSelector ItemsSource="{Binding DataActual}" Grid.ColumnSpan="2">
+                    <phone:LongListSelector.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="30 0 0 0" Grid.Column="0">
+                                <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                <TextBlock Text=":" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                <TextBlock Text="{Binding startMin}" Foreground="Red" FontSize="25" FontWeight="SemiBold" Margin="0 8 0 0"/>
+                                <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                <TextBlock Text=":"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                <TextBlock Text="{Binding endMin}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+
+                                <StackPanel Orientation="Vertical" Margin="107 0 0 0" Width="240" Grid.Column="1">
+                                    <TextBlock Text="{Binding name}" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                                    <TextBlock Text="{Binding director}" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                                </StackPanel>
+                            </StackPanel>
                         </DataTemplate>
-                        </phone:LongListSelector.ItemTemplate>
-                    </phone:LongListSelector>
-                
+                    </phone:LongListSelector.ItemTemplate>
+                </phone:LongListSelector>
+
             </Grid>
-            <!--</Canvas>-->
         </phone:PivotItem>
         <!--Fin Pivot Hoy-->
 
@@ -179,14 +180,15 @@
             <ScrollViewer VerticalScrollBarVisibility="Visible">
                 <StackPanel Orientation="Vertical" Margin="-20">
 
-                    <Canvas>
-                        <Rectangle Fill="Bisque" Height="270" Width="455" Margin="15 -5 3 -3" Opacity="0.5"/>
+                    <!--<Canvas>-->
+                    <Grid>
+                        <Rectangle Fill="Bisque" Height="290" Width="455" Margin="15 -5 3 -3" Opacity="0.5"/>
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 20 0 0"/>
-                            <TextBlock Text="¿Qué somos?" FontSize="30" Margin="10 20 0 0" FontWeight="Bold" Foreground="#000099"/>
+                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 -173 0 0"/>
+                            <TextBlock Text="¿Qué somos?" FontSize="30" Margin="10 30 0 0" FontWeight="Bold" Foreground="#000099"/>
                         </StackPanel>
 
-                        <RichTextBox TextAlignment="Justify" Margin="10 70 5 0" Width="470" Foreground="#5A0000">
+                        <RichTextBox TextAlignment="Justify" Margin="10 89 5 0" Width="470" Foreground="#5A0000">
                             <Paragraph>
                                 Un medio de comunicación Institucional, adscrito a la Vicerrectoría de Cultura y 
                                 Bienestar de la Universidad del Cauca, de carácter universitario, orientamos la programación 
@@ -194,12 +196,14 @@
                                 manera, promover y difundir los valores humanos, la formación ciudadana y el debate público.
                             </Paragraph>
                         </RichTextBox>
-                    </Canvas>
+                    <!--</Canvas>-->
+                    </Grid>
 
-                    <Canvas Margin="0 280 0 0">
+                    <Grid Margin="0 20 0 0">
+                    <!--<Canvas Margin="0 280 0 0">-->
                         <Rectangle Fill="Bisque" Height="270" Width="455" Margin="15 -5 3 -3" Opacity="0.5"/>
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 10 0 0"/>
+                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 -198 0 0"/>
                             <TextBlock Text="Nuestra Programación" FontSize="30" Margin="10 10 0 0" FontWeight="Bold" Foreground="#000099"/>
                         </StackPanel>
 
@@ -211,12 +215,14 @@
                             universitaria, de interés público y enfocada a la diversidad de la región y el país.
                             </Paragraph>
                         </RichTextBox>
-                    </Canvas>
+                    <!--Canvas-->
+                    </Grid>
 
-                    <Canvas Margin="0 280 0 0">
-                        <Rectangle Fill="Gray" Height="250" Width="455" Margin="15 -3 3 -3" Opacity="0.55"/>
+                    <Grid Margin="0 30 0 0">
+                        <!--<Canvas Margin="0 280 0 0">-->
+                        <Rectangle Fill="Bisque" Height="250" Width="455" Margin="15 -5 3 -3" Opacity="0.5"/>
                         <StackPanel Orientation="Horizontal">
-                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 10 0 0"/>
+                            <Rectangle Width="10" Height="50" Fill="#D1000F" Margin="30 -185 0 0"/>
                             <TextBlock Text="Nuestro Propósito" FontSize="30" Margin="10 10 0 0" FontWeight="Bold" Foreground="#000099"/>
                         </StackPanel>
 
@@ -228,7 +234,8 @@
                             de los habitantes del norte del Cauca,
                             </Paragraph>
                         </RichTextBox>
-                    </Canvas>
+                        <!--</Canvas>-->
+                    </Grid>
                 </StackPanel>
             </ScrollViewer>
         </phone:PivotItem>

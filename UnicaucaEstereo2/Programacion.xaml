@@ -15,7 +15,7 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot">
-        <phone:Pivot>
+        <phone:Pivot DataContext="{Binding Source={StaticResource dataSemana}}">
             <!--Inicio TITULO-->
             <phone:Pivot.Title>
                 <StackPanel Orientation="Horizontal">
@@ -37,9 +37,9 @@
             </phone:Pivot.Background>
             <!--Fin Fondo-->
             
-            <!--Inicio hoy-->
-            <phone:PivotItem Header="Hoy">
-                <Grid>
+            <!--Inicio Lunes-->
+            <phone:PivotItem Header="Lunes" >
+                <Grid Height="500">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="180"/>
                         <ColumnDefinition Width="330"/>
@@ -47,43 +47,261 @@
                     <Grid.RowDefinitions>
                         
                     </Grid.RowDefinitions>
-                    <Canvas Grid.Column="0">
-                        <Rectangle Height="500" Width="150" Canvas.Left="15" Canvas.Top="10" Fill="Azure" Opacity="0.6"/>
-                        <StackPanel Orientation="Vertical" Canvas.Left="50" Canvas.Top="40">
-                            <TextBlock Text="2-4 pm" Foreground="#C41010" FontSize="25" FontWeight="SemiBold" />
-                            <TextBlock Text="4-6 pm" Foreground="#C41010" FontSize="25" FontWeight="SemiBold" Margin="0 120 0 0"/>
-                            <TextBlock Text="6-8 pm" Foreground="#C41010" FontSize="25" FontWeight="SemiBold" Margin="0 100 0 0"/>
-                            <TextBlock Text="8-10 pm" Foreground="#C41010" FontSize="25" FontWeight="SemiBold" Margin="-5 60 0 0"/>
-                        </StackPanel>
-                    </Canvas>
-                    <Canvas Grid.Column="1">
-                        <Rectangle Height="500" Width="260" Canvas.Left="15" Canvas.Top="10" Fill="Azure" Opacity="0.6"/>
-                        <StackPanel Orientation="Vertical" Canvas.Left="30" Canvas.Top="15">
-                            <TextBlock Text="Me Gusta" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
-                            <TextBlock Text="Maria Alejandra Medina" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
-                            <TextBlock Margin="0 20 0 0" Text="Pasaporte Express Internacional" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
-                            <TextBlock Text="Jorge Gonzáles" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
-                            <TextBlock Margin="0 20 0 0" Text="Kirameki Ongaku" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
-                            <TextBlock Text="Victor Martínez" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
-                            <TextBlock Margin="0 20 0 0" Text="Factor RH" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
-                            <TextBlock Text="Jorge Betancourt" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
-                        </StackPanel>
-                    </Canvas>
+                    <!--<Canvas Grid.Column="0">-->
+                        <Rectangle Height="500" Width="170"  Fill="Azure" Opacity="0.6"/>
+                        <Rectangle Height="500" Width="290" Fill="Azure" Opacity="0.6" Grid.Column="1"/>
+                        <phone:LongListSelector ItemsSource="{Binding DataLunes}" Grid.ColumnSpan="2">
+                            <phone:LongListSelector.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="30 0 0 0" Grid.Column="0">
+                                        <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                        <TextBlock Text=":" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                        <TextBlock Text="{Binding startMin}" Foreground="Red" FontSize="25" FontWeight="SemiBold" Margin="0 8 0 0"/>
+                                        <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                        <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                        <TextBlock Text=":"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                        <TextBlock Text="{Binding endMin}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+
+                                    <StackPanel Orientation="Vertical" Margin="107 0 0 0" Width="240" Grid.Column="1">
+                                        <TextBlock Text="{Binding name}" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                                        <TextBlock Text="{Binding director}" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
                 </Grid>
             </phone:PivotItem>
-            <!--Fin hoy-->
+            <!--Fin Lunes-->
 
-            <!--Inicio mañana-->
-            <phone:PivotItem Header="Mañana">
+            <!--Inicio martes-->
+            <phone:PivotItem Header="Martes" >
+                <Grid Height="500">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="330"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
 
+                    </Grid.RowDefinitions>
+                    <!--<Canvas Grid.Column="0">-->
+                    <Rectangle Height="500" Width="170"  Fill="Azure" Opacity="0.6"/>
+                    <Rectangle Height="500" Width="290" Fill="Azure" Opacity="0.6" Grid.Column="1"/>
+                    <phone:LongListSelector ItemsSource="{Binding DataMartes}" Grid.ColumnSpan="2">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="30 0 0 0" Grid.Column="0">
+                                    <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text=":" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text="{Binding startMin}" Foreground="Red" FontSize="25" FontWeight="SemiBold" Margin="0 8 0 0"/>
+                                    <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                    <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text=":"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text="{Binding endMin}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+
+                                    <StackPanel Orientation="Vertical" Margin="107 0 0 0" Width="240" Grid.Column="1">
+                                        <TextBlock Text="{Binding name}" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                                        <TextBlock Text="{Binding director}" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                </Grid>
             </phone:PivotItem>
-            <!--Mañana Fin-->
+            <!--Fin martes-->
 
-            <!--Inicio Semana-->
-            <phone:PivotItem Header="Semana">
+            <!--Inicio miercoles-->
+            <phone:PivotItem Header="Miércoles" >
+                <Grid Height="500">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="330"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
 
+                    </Grid.RowDefinitions>
+                    <!--<Canvas Grid.Column="0">-->
+                    <Rectangle Height="500" Width="170"  Fill="Azure" Opacity="0.6"/>
+                    <Rectangle Height="500" Width="290" Fill="Azure" Opacity="0.6" Grid.Column="1"/>
+                    <phone:LongListSelector ItemsSource="{Binding DataMiercoles}" Grid.ColumnSpan="2">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="30 0 0 0" Grid.Column="0">
+                                    <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text=":" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text="{Binding startMin}" Foreground="Red" FontSize="25" FontWeight="SemiBold" Margin="0 8 0 0"/>
+                                    <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                    <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text=":"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text="{Binding endMin}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+
+                                    <StackPanel Orientation="Vertical" Margin="107 0 0 0" Width="240" Grid.Column="1">
+                                        <TextBlock Text="{Binding name}" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                                        <TextBlock Text="{Binding director}" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                </Grid>
             </phone:PivotItem>
-            <!--Fin Semana-->
+            <!--Fin miercoles-->
+            
+            <!--Inicio Jueves-->
+            <phone:PivotItem Header="Jueves" >
+                <Grid Height="500">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="330"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+                    <!--<Canvas Grid.Column="0">-->
+                    <Rectangle Height="500" Width="170"  Fill="Azure" Opacity="0.6"/>
+                    <Rectangle Height="500" Width="290" Fill="Azure" Opacity="0.6" Grid.Column="1"/>
+                    <phone:LongListSelector ItemsSource="{Binding DataJueves}" Grid.ColumnSpan="2">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="30 0 0 0" Grid.Column="0">
+                                    <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text=":" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text="{Binding startMin}" Foreground="Red" FontSize="25" FontWeight="SemiBold" Margin="0 8 0 0"/>
+                                    <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                    <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text=":"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text="{Binding endMin}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+
+                                    <StackPanel Orientation="Vertical" Margin="107 0 0 0" Width="240" Grid.Column="1">
+                                        <TextBlock Text="{Binding name}" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                                        <TextBlock Text="{Binding director}" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                </Grid>
+            </phone:PivotItem>
+            <!--Fin Jueves-->
+
+            <!--Inicio Viernes-->
+            <phone:PivotItem Header="Viernes" >
+                <Grid Height="500">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="330"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+                    <!--<Canvas Grid.Column="0">-->
+                    <Rectangle Height="500" Width="170"  Fill="Azure" Opacity="0.6"/>
+                    <Rectangle Height="500" Width="290" Fill="Azure" Opacity="0.6" Grid.Column="1"/>
+                    <phone:LongListSelector ItemsSource="{Binding DataViernes}" Grid.ColumnSpan="2">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="30 0 0 0" Grid.Column="0">
+                                    <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text=":" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text="{Binding startMin}" Foreground="Red" FontSize="25" FontWeight="SemiBold" Margin="0 8 0 0"/>
+                                    <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                    <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text=":"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text="{Binding endMin}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+
+                                    <StackPanel Orientation="Vertical" Margin="107 0 0 0" Width="240" Grid.Column="1">
+                                        <TextBlock Text="{Binding name}" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                                        <TextBlock Text="{Binding director}" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                </Grid>
+            </phone:PivotItem>
+            <!--Fin Viernes-->
+
+            <!--Inicio Sábado-->
+            <phone:PivotItem Header="Sábado" >
+                <Grid Height="500">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="330"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+                    <!--<Canvas Grid.Column="0">-->
+                    <Rectangle Height="500" Width="170"  Fill="Azure" Opacity="0.6"/>
+                    <Rectangle Height="500" Width="290" Fill="Azure" Opacity="0.6" Grid.Column="1"/>
+                    <phone:LongListSelector ItemsSource="{Binding DataSabado}" Grid.ColumnSpan="2">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="30 0 0 0" Grid.Column="0">
+                                    <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text=":" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text="{Binding startMin}" Foreground="Red" FontSize="25" FontWeight="SemiBold" Margin="0 8 0 0"/>
+                                    <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                    <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text=":"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text="{Binding endMin}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+
+                                    <StackPanel Orientation="Vertical" Margin="107 0 0 0" Width="240" Grid.Column="1">
+                                        <TextBlock Text="{Binding name}" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                                        <TextBlock Text="{Binding director}" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                </Grid>
+            </phone:PivotItem>
+            <!--Fin Sábado-->
+
+            <!--Inicio Domingo-->
+            <phone:PivotItem Header="Domingo" >
+                <Grid Height="500">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="330"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+                    <!--<Canvas Grid.Column="0">-->
+                    <Rectangle Height="500" Width="170"  Fill="Azure" Opacity="0.6"/>
+                    <Rectangle Height="500" Width="290" Fill="Azure" Opacity="0.6" Grid.Column="1"/>
+                    <phone:LongListSelector ItemsSource="{Binding DataDomingo}" Grid.ColumnSpan="2">
+                        <phone:LongListSelector.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="30 0 0 0" Grid.Column="0">
+                                    <TextBlock Text="{Binding startTime}" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text=":" FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0" />
+                                    <TextBlock Text="{Binding startMin}" Foreground="Red" FontSize="25" FontWeight="SemiBold" Margin="0 8 0 0"/>
+                                    <TextBlock Text=" - " Margin="0 8 0 0" Foreground="Red"/>
+                                    <TextBlock Text="{Binding endTime}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text=":"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+                                    <TextBlock Text="{Binding endMin}"  FontSize="25" Foreground="Red" FontWeight="SemiBold" Margin="0 8 0 0"  />
+
+                                    <StackPanel Orientation="Vertical" Margin="107 0 0 0" Width="240" Grid.Column="1">
+                                        <TextBlock Text="{Binding name}" Foreground="#161280" FontSize="30" FontWeight="SemiBold" TextWrapping="Wrap" Width="240"/>
+                                        <TextBlock Text="{Binding director}" TextWrapping="Wrap" Width="240" Foreground="#161280" FontSize="23" FontWeight="Normal"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </phone:LongListSelector.ItemTemplate>
+                    </phone:LongListSelector>
+
+                </Grid>
+            </phone:PivotItem>
+            <!--Fin Domingo-->
         </phone:Pivot>
     </Grid>
 

@@ -20,31 +20,35 @@ namespace UnicaucaEstereo2
     public partial class MainPage : PhoneApplicationPage, Conexion<Musica>.Iconexion
     {
         DataModel dataM;
-        Conexion<Musica> conexion;
+        
         resultadosBusqueda RB = new resultadosBusqueda();
+        
+        Conexion<Musica> conexion;
         ProgramacionDAO programacionDAO;
+        
         // Constructor
         public MainPage()
         {
             InitializeComponent();
             programacionDAO = new ProgramacionDAO();
-            cargarProgramacionDia();
-           // if (NetworkInterface.GetIsNetworkAvailable())
-            //{
+            try
+            {
+                cargarProgramacionDia();
+                programacionDAO.ProgramacionSemana();
                 conexion = new Conexion<Musica>();
                 conexion.findAllDocuments(this);
+            }
+            catch
+            {
+                MessageBox.Show("Comprueba tu conexion a internet");
+            }
+           
+            
 
-                List<Programa> lisIni = programacionDAO.findAllProgramas();
-                if(lisIni.Count == 0){            
+            List<Programa> lisIni = programacionDAO.findAllProgramas();
+            if(lisIni.Count == 0){            
                 programacionDAO.insertAllProgramas();
-                }
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Revisa tu conexión a internet");
-            //}
-            // Sample code to localize the ApplicationBar
-            //BuildLocalizedApplicationBar();
+            }
         }
 
         private void IrReproductor(object sender, System.Windows.Input.GestureEventArgs e)
@@ -175,12 +179,60 @@ namespace UnicaucaEstereo2
         {
             DateTime hoy = DateTime.Now;
             String dia = hoy.DayOfWeek.ToString();
-            programacionDAO.findActualDay(dia);            
+            
+            List<Programa> diaActual = programacionDAO.findActualDay(dia);
+            List<Programa> porHora = new List<Programa>();
+            Programa prActual = new Programa();
+
+            int hora = hoy.Hour;
+            int min = hoy.Minute;
+            
+
+            for (int i = 0; i < diaActual.Count(); i++)
+            {
+                if ((hora >= diaActual.ElementAt(i).startTime)&&(hora <= diaActual.ElementAt(i).endTime))
+                {                    
+                    porHora.Add(diaActual.ElementAt(i));                    
+                }
+            }
+
+           
+
+            for (int j = 0; j < porHora.Count(); j++)
+            {
+                if (porHora.ElementAt(j).endMin < min)
+                {
+                    prActual = porHora.ElementAt(j);
+                }
+                else
+                {
+                    if (porHora.ElementAt(j).endMin >= min)
+                    {
+                        prActual = porHora.ElementAt(j); 
+                    }
+                }
+            }
+
+            if (prActual.startMin == 0)
+            {
+                horaPrActual.Text = "" + prActual.startTime + ":0" + prActual.startMin + " - " + prActual.endTime + ":" + prActual.endMin+" ";
+            }
+            else
+            {
+                if (prActual.endMin == 0)
+                {
+                    horaPrActual.Text = "" + prActual.startTime + ":" + prActual.startMin + " - " + prActual.endTime + ":0" + prActual.endMin + " ";
+                }
+                else
+                {
+
+                    horaPrActual.Text = "" + prActual.startTime + ":" + prActual.startMin + " - " + prActual.endTime + ":" + prActual.endMin + " ";
+                }
+            }
+            nombrePrActual.Text = " "+prActual.name;
         }
-
-      
-
-        public bool CheckInternetConnection { get; set; }
+        
+              
 
         //private void traerResultado(object sender, RoutedEventArgs e)
         //{

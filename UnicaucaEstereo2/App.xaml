@@ -13,6 +13,7 @@
         <Models:DataModel x:Key="dataModel"/>
         <Models:DataModelResult x:Key="dataModelResult"/>
         <Models:DataModelDiaActual x:Key="prActual"/>
+        <Models:DataModelSemana x:Key="dataSemana"/>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
