@@ -15,6 +15,7 @@ namespace UnicaucaEstereo2
 {
     public partial class Chat : PhoneApplicationPage
     {
+        ObservableCollection<TwitterStatus> data;
         public Chat()
         {
             try
@@ -45,6 +46,8 @@ namespace UnicaucaEstereo2
                     {
                         this.Dispatcher.BeginInvoke(() =>
                         {
+                            data.Insert(0, tweet);
+                            this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = data; });
                             MessageBox.Show("Canción Solicitada");
                             chat.Text = "";
                         }
@@ -74,7 +77,7 @@ namespace UnicaucaEstereo2
                 if (rep.StatusCode == HttpStatusCode.OK)
                 {
 
-                    ObservableCollection<TwitterStatus> data = new ObservableCollection<TwitterStatus>(ts.Statuses);
+                    data = new ObservableCollection<TwitterStatus>(ts.Statuses);
 
                     this.Dispatcher.BeginInvoke(() => { tweetList.ItemsSource = data; });
                 }
