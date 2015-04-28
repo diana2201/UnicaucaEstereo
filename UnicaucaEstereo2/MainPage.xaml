@@ -111,7 +111,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <!--Barra de buscar-->
+                
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <TextBox x:Name="busqueda" Width="350" Height="67"/>
                     <Button Height="90" Width="90"  Margin="-10 0 10 0"   BorderBrush="White" >
@@ -119,7 +119,7 @@
                     </Button>
                 </StackPanel>
                 
-                <!--Lista de canciones-->    
+                   
                 <phone:LongListSelector x:Name="listaCanciones" ItemsSource="{Binding Data}" Grid.Row="1">
                     <phone:LongListSelector.ItemTemplate>
                         <DataTemplate>

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ *Desarrollado por:
+ * Hamilton Andrés Urbano Benavides
+ * h.a.u.r1993@gmail.com
+ * Diana Marcela Samboní
+ * dianasamboni22@gmail.com
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -67,7 +74,7 @@ namespace UnicaucaEstereo2
                 Musica musicaSelected = new Musica();
                 musicaSelected = listaCanciones.SelectedItem as Musica;
                 reproductor.DataContext = musicaSelected;
-                
+
 
             }
         }
@@ -118,12 +125,12 @@ namespace UnicaucaEstereo2
             dataRes.DataR.Clear();
             try
             {
-                 for (int i = 0; i < dataM.Data.Count(); i++)
+                for (int i = 0; i < dataM.Data.Count(); i++)
                 //for (int i = 0; i < 5; i++)
-                 {
+                {
                     String title = dataM.Data.ElementAt(i).title;
                     String artist = dataM.Data.ElementAt(i).artist;
-                                         
+
                     if (title != null)
                     {
                         if (title.ToUpper().Contains(busqueda.Text.ToUpper()))
@@ -137,22 +144,22 @@ namespace UnicaucaEstereo2
                             dataRes.DataR.Add(dataM.Data.ElementAt(i));
                         }
                     }
-                   
+
                 }
-               
-                if(j == 0)
+
+                if (j == 0)
                 {
                     MessageBox.Show("No se encontró: " + busqueda.Text);
                 }
                 else
-                {                  
+                {
                     //MessageBox.Show("contexto de resultadosbusqueda = datares ");
                     NavigationService.Navigate(new Uri("/resultadosBusqueda.xaml", UriKind.Relative));
                 }
-                
-                
+
+
             }
-            catch(Exception exp)
+            catch (Exception exp)
             {
                 MessageBox.Show("Error: " + exp.GetBaseException());
             }
@@ -231,8 +238,8 @@ namespace UnicaucaEstereo2
             }
             nombrePrActual.Text = " "+prActual.name;
         }
-        
-              
+
+
 
         //private void traerResultado(object sender, RoutedEventArgs e)
         //{
@@ -242,10 +249,10 @@ namespace UnicaucaEstereo2
         //    hoy2.Text = "" + listapro.Count();
         //}
 
-        //private void insertarProg(object sender, RoutedEventArgs e)
-        //{
-        //    programacionDAO.insertAllProgramas();
-        //}
+        private void insertarProg(object sender, RoutedEventArgs e)
+        {
+            programacionDAO.insertAllProgramas();
+        }
 
 
 

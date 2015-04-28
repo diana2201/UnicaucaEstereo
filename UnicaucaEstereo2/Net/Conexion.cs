@@ -1,4 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿/*
+ *Desarrollado por:
+ * Hamilton Andrés Urbano Benavides
+ * h.a.u.r1993@gmail.com
+ * Diana Marcela Samboní
+ * dianasamboni22@gmail.com
+ */
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +26,11 @@ namespace UnicaucaEstereo2.Net
         }
 
         HttpClient client;
-        const String url = "http://localhost/ConexionDBEmisora/index.php";
+        const String url = "http://www.unicauca.edu.co/emisora/ConexionDBEmisora/index.php";
         
 
         public Conexion()
-        {
+        {  
             client = new HttpClient();
         }
 

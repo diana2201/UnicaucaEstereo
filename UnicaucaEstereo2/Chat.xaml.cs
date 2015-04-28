@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ *Desarrollado por:
+ * Hamilton Andrés Urbano Benavides
+ * h.a.u.r1993@gmail.com
+ * Diana Marcela Samboní
+ * dianasamboni22@gmail.com
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -31,8 +38,8 @@ namespace UnicaucaEstereo2
 
         public TwitterService CrearServicio()
         {
-            var service = new TwitterService("vyC1jcdmwiITzLGXFHDwsH7Bt", "L6sarTFzb9QTCzOs1j1NjSdeD2yTZnFrsOzhuN6PN6cEZ3o6KU");
-            service.AuthenticateWith("435393700-3XfGClwmkI95SauKX88exrN4aPz5u9hxnIdjK69Z", "UtcU4OATLuZqWJ9wOwIhwm4FEnSyKX7EPwAn3rE1gvpyV");
+            var service = new TwitterService("zpnBDPJmE7akTNeH3iaR6rVX5", "JDLz7EDUVfC46OqLVqGleft20JVrxT8WyRkYYKRREQsGJpAgIJ");
+            service.AuthenticateWith("3142540078-E5SovOi3o9bnn1iTL2tcc7ZSoKRYFE5nULYwkNA", "5tqZvgyT8tnhqrz9TUfkgt70REDrlmcC00Ofl1Qocbi1B");
             return service;
         }
 
@@ -54,11 +61,6 @@ namespace UnicaucaEstereo2
                         );
 
                     }
-                    //else
-                    //{
-                    //    MessageBox.Show("Debes estar conectado a internet para pedir una canción");
-                    //    chat.Text = "";
-                    //}
                 });
 
             }        
